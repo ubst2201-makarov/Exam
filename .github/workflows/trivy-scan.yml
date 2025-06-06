@@ -7,14 +7,13 @@ jobs:
   trivy-scan:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Install Trivy
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/setup-trivy@latest
         with:
-          version: latest
+          version: latest  
 
-      - name: Scan alpine/openssl image with Trivy
-        run: |
-          trivy image --exit-code 1 --severity HIGH,CRITICAL hub.docker.com/r/alpine/openssl
+      - name: Pull docker image
+        run: docker pull alpine/openssl
+
+      - name: Scanning image with trivy
+        run: trivy image --exit-code 1 --severity HIGH,CRITICAL alpine/openssl
