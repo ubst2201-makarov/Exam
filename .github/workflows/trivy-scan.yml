@@ -17,4 +17,4 @@ jobs:
 
       - name: Scan alpine/openssl image with Trivy
         run: |
-          trivy image --exit-code 1 --severity HIGH,CRITICAL alpine/openssl
+          trivy image --exit-code 1 --severity HIGH,CRITICAL hub.docker.com/r/alpine/openssl
